@@ -90,6 +90,7 @@ typedef void (*gcov_merge_fn) (gcov_type *, gcov_unsigned_t);
  * @version: gcov version magic indicating the gcc version used for compilation
  * @next: list head for a singly-linked list
  * @stamp: uniquifying time stamp
+ * @checksum: unique object checksum
  * @filename: name of the associated gcov data file
  * @merge: merge functions (null for unused counter type)
  * @n_functions: number of instrumented functions
@@ -103,6 +104,9 @@ struct gcov_info {
 	gcov_unsigned_t version;
 	struct gcov_info *next;
 	gcov_unsigned_t stamp;
+#ifdef GCOV_HAS_CHECKSUM
+	gcov_unsigned_t checksum;
+#endif
 	const char *filename;
 	gcov_merge_fn merge[GCOV_COUNTERS];
 	unsigned n_functions;

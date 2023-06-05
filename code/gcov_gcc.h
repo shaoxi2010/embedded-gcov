@@ -63,13 +63,21 @@
 /* This has been used with GCC 7.5.0 and GCC 11.1.0 */
 #if (__GNUC__ >= 10)
 #define GCOV_COUNTERS			8
-#elif (__GNUC__ >= 5) || (__GNUC__ == 4 && __GNUC_MINOR__ >= 9)
-#define GCOV_COUNTERS			9
+#elif (__GNUC__ >= 7)
+#define GCOV_COUNTERS           9
+#elif (__GNUC__ >= 5)
+#define GCOV_COUNTERS			10
+#elif (__GNUC__ == 4 && __GNUC_MINOR__ >= 9)
+#define GCOV_COUNTERS           9
 #else
 #define GCOV_COUNTERS			8
 #endif
 
 /* Compare to gcc/gcov-io.h */
+
+#if (__GNUC__ >= 12)
+#define GCOV_HAS_CHECKSUM
+#endif
 
 /*
  * Profiling data types used for gcc 3.4 and above - these are defined by
